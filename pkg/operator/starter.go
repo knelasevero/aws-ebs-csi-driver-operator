@@ -749,6 +749,18 @@ func withHypershiftDeploymentHook(isHypershift bool, hypershiftImage string, nam
 				Effect:   corev1.TaintEffectNoSchedule,
 			},
 			{
+				Key:      "hypershift.openshift.io/control-plane",
+				Operator: corev1.TolerationOpEqual,
+				Value:    "true",
+				Effect:   corev1.TaintEffectNoExecute,
+			},
+			{
+				Key:      "node-role.kubernetes.io/control-plane",
+				Operator: corev1.TolerationOpEqual,
+				Value:    "true",
+				Effect:   corev1.TaintEffectNoExecute,
+			},
+			{
 				Key:      "hypershift.openshift.io/cluster",
 				Operator: corev1.TolerationOpEqual,
 				Value:    namespace,
